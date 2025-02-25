@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
+import '../../../widgets/bottom_nav_bar.dart';
 
 class RiwayatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Riwayat Screen'),
+        title: Text('Riwayat'),
       ),
       body: Center(
-        child: Text('This is a placeholder screen'),
+        child: Text('Riwayat Screen'),
+      ),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: 3, // Riwayat is selected
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: RiwayatScreen(),
-  ));
 }

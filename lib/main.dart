@@ -25,6 +25,7 @@ class VitaCureApp extends StatelessWidget {
       ),
       initialRoute: AppRoutes.home,
       routes: AppRoutes.routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
