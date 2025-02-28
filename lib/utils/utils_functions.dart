@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+Color panaceaTeal20 = Color.fromARGB(255, 158, 239, 240);
+
 // Function to create a MaterialColor from a 6-digit or 8-digit hexadecimal color code
 MaterialColor createMaterialColor(String hexColor) {
   // Add alpha value if not provided

@@ -5,32 +5,32 @@ class LayananKami extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 2,
+      crossAxisCount: 4,
       padding: EdgeInsets.all(16.0),
       children: <Widget>[
         LayananKamiButton(
-          icon: Icons.chat,
+          image: Image.asset('assets/images/Chat1.png'),
           label: 'Konsultasi',
           onPressed: () {
             // Navigate to Konsultasi screen
           },
         ),
         LayananKamiButton(
-          icon: Icons.group,
+          image: Image.asset('assets/images/community.png'),
           label: 'Komunitas',
           onPressed: () {
             // Navigate to Komunitas screen
           },
         ),
         LayananKamiButton(
-          icon: Icons.comment,
+          image: Image.asset('assets/images/Chat1.png'),
           label: 'Opini Lain',
           onPressed: () {
             // Navigate to Opini Lain screen
           },
         ),
         LayananKamiButton(
-          icon: Icons.message,
+          image: Image.asset('assets/images/cart.png'),
           label: 'Pesan',
           onPressed: () {
             // Navigate to Pesan screen
