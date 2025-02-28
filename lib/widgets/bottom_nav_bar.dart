@@ -40,7 +40,7 @@ class BottomNavBar extends StatelessWidget {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.notifications),
-          label: 'Notifikasi',
+          label: 'Pesan',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite),
@@ -48,7 +48,7 @@ class BottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'Home',
+          label: 'Beranda',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.history),

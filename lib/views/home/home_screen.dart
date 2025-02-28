@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
                   'assets/images/Profileuser1.png'), // Replace with your logo asset
             ),
             onPressed: () {
-              Navigator.pushNamed(context, '/login');
+              Navigator.pushNamed(context, '/profil');
             },
           ),
         ],
