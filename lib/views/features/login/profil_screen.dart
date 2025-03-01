@@ -26,6 +26,7 @@ class ProfilScreen extends StatelessWidget {
               text: 'Masuk',
               onPressed: () {
                 // Handle login button press
+                Navigator.pushNamed(context, '/login');
               },
             ),
           ],

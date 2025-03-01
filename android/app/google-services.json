@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "712964741137",
+    "project_id": "vitacure-9894d",
+    "storage_bucket": "vitacure-9894d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712964741137:android:d1d817e1b7c57b7a3879b0",
+        "android_client_info": {
+          "package_name": "com.example.flutter_ureekaphase2_kesehatan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFYLe3evlAwaALlMRSTgxIllelqEXsZmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

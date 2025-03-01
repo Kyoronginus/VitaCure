@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import '../../utils/utils_functions.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final Widget title; // ← 型を String → Widget に変更
+  final Widget title;
   final bool showBackButton;
   final VoidCallback? onProfileIconPressed;
   final List<Widget>? actions;
@@ -11,7 +11,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const CustomAppBar({
     Key? key,
-    required this.title, // ← ここで String ではなく Widget を受け取る
+    required this.title,
     this.showBackButton = true,
     this.onProfileIconPressed,
     this.actions,
@@ -30,14 +30,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       title: DefaultTextStyle(
         style: TextStyle(
-          fontWeight: FontWeight.bold, // デフォルトで太字
-          color: Colors.black, // デフォルトで黒
-          fontSize: 24, // 必要ならデフォルトサイズも指定
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+          fontSize: 24,
         ),
-        child: title, // ここに渡された Text を適用
-      ), // ← これでどんなウィジェットでも受け取れる
+        child: title,
+      ),
       centerTitle: true,
-
       leading: showBackButton
           ? IconButton(
               icon: Image.asset(

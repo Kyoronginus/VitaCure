@@ -1,3 +1,5 @@
+//sementara gak kepake sih
+
 import 'package:flutter/material.dart';
 
 Color panaceaTeal20 = Color.fromARGB(255, 158, 239, 240);

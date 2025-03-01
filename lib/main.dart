@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'routes/app_routes.dart';
 import 'utils/utils_functions.dart';
+import 'package:firebase_core/firebase_core.dart' as firebase_core;
+import 'firebase_options.dart' as firebase_options;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await firebase_core.Firebase.initializeApp(
+    options: firebase_options.DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const VitaCureApp());
 }
 
@@ -12,10 +18,9 @@ class VitaCureApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Platform Kesehatan Terpadu',
+      title: 'VitaCure',
       theme: ThemeData(
         primarySwatch: Colors.cyan, // Example MaterialColor
-
         scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBarTheme: const AppBarTheme(
           backgroundColor:

@@ -8,7 +8,9 @@ import '../views/features/kondisi/kondisi_screen.dart';
 import '../views/features/pesan/pesan_screen.dart';
 import '../views/features/riwayat/riwayat_screen.dart';
 import '../views/features/pengaturan/pengaturan_screen.dart';
-import '../views/features/login/Profil.dart';
+import '../views/features/login/profil_screen.dart';
+import '../views/features/login/login_screen.dart';
+import '../views/features/login/register_screen.dart';
 
 class AppRoutes {
   static const String home = '/';
@@ -16,7 +18,9 @@ class AppRoutes {
   static const String kondisi = '/kondisi';
   static const String riwayat = '/riwayat';
   static const String pengaturan = '/pengaturan';
-  static const String profil = '/profil'; // Add login route
+  static const String profil = '/profil';
+  static const String login = '/login';
+  static const String register = '/register';
 
   static Map<String, WidgetBuilder> get routes => {
         home: (context) => HomeScreen(),
@@ -24,6 +28,8 @@ class AppRoutes {
         kondisi: (context) => KondisiScreen(),
         riwayat: (context) => RiwayatScreen(),
         pengaturan: (context) => PengaturanScreen(),
-        profil: (context) => ProfilScreen(), // Add login screen
+        profil: (context) => ProfilScreen(),
+        login: (context) => LoginScreen(),
+        register: (context) => RegisterScreen(),
       };
 }
