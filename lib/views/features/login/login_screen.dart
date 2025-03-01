@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../widgets/custom_app_bar.dart';
 import '../../../widgets/bottom_nav_bar.dart';
 import 'login_button.dart';
@@ -27,7 +28,15 @@ class _LoginScreenState extends State<LoginScreen> {
           password: _passwordController.text,
         );
 
-        // Navigate to the home screen or show a success message
+        User? user = FirebaseAuth.instance.currentUser;
+        if (user != null) {
+          DocumentSnapshot userData = await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .get();
+          print('User data: ${userData.data()}');
+        }
+
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Login successful')));
         Navigator.pushReplacementNamed(context, AppRoutes.home);
