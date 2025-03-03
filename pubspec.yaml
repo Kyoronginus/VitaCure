@@ -40,11 +40,14 @@ dependencies:
   firebase_database: ^11.3.4
   cupertino_icons: ^1.0.8
   provider: ^6.0.0
+<<<<<<< HEAD
   firebase_ml_model_downloader: 0.3.3+2
   tflite: ^1.1.2
   http: ^0.13.3
   flutter_dotenv: ^5.2.1
 
+=======
+>>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162
 
 dev_dependencies:
   flutter_test:

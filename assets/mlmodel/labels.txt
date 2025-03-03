@@ -1,2 +1,11 @@
+<<<<<<< HEAD
 Disease
 Healthy
+=======
+Glucose
+Systolic Blood Pressure
+Diastolic Blood Pressure
+BMI
+Heart Rate
+Disease
+>>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162

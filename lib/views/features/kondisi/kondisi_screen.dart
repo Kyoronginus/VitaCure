@@ -5,8 +5,11 @@ import '../../../widgets/bottom_nav_bar.dart';
 import '../../../widgets/custom_app_bar.dart';
 import '../../../widgets/health_data_card.dart';
 import '../../../widgets/text_styles.dart';
+<<<<<<< HEAD
 import '../../../services/model_service.dart';
 import '../../../services/chatbot_service.dart';
+=======
+>>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162
 
 class KondisiScreen extends StatelessWidget {
   @override
@@ -24,6 +27,7 @@ class KondisiScreen extends StatelessWidget {
   }
 }
 
+<<<<<<< HEAD
 class KondisiBody extends StatefulWidget {
   @override
   _KondisiBodyState createState() => _KondisiBodyState();
@@ -51,6 +55,9 @@ class _KondisiBodyState extends State<KondisiBody> {
     });
   }
 
+=======
+class KondisiBody extends StatelessWidget {
+>>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<KondisiController>(context);
@@ -151,6 +158,7 @@ class _KondisiBodyState extends State<KondisiBody> {
           SizedBox(height: 20),
           Center(
             child: ElevatedButton(
+<<<<<<< HEAD
               onPressed: () async {
                 List<double> input = [
                   double.parse(controller.healthData['Heart Rate'] ?? "0"),
@@ -167,10 +175,18 @@ class _KondisiBodyState extends State<KondisiBody> {
                     SnackBar(content: Text('Health Status: ${result[0]}')),
                   );
                 }
+=======
+              onPressed: () {
+                // Remove Firebase model-related code
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Health Status Check is disabled')),
+                );
+>>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162
               },
               child: Text('Check Health Status'),
             ),
           ),
+<<<<<<< HEAD
           SizedBox(height: 20),
           TextField(
             controller: _chatController,
@@ -189,6 +205,8 @@ class _KondisiBodyState extends State<KondisiBody> {
             _chatResponse,
             style: TextStyle(fontSize: 16),
           ),
+=======
+>>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162
         ],
       ),
     );
