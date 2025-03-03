@@ -1,28 +1,38 @@
-import 'package:firebase_ml_model_downloader/firebase_ml_model_downloader.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:typed_data';
 
 class ModelService {
+  /// モデルをロードする
   static Future<void> downloadModel() async {
-    final model = await FirebaseModelDownloader.instance.getModel(
-      "Basic_disease_classification", // Replace with your model name
-      FirebaseModelDownloadType.localModelUpdateInBackground,
-    );
-
-    final modelPath = model.file.path;
-    await Tflite.loadModel(
-      model: modelPath,
-      labels:
-          "assets/mlmodel/labels.txt", // Replace with your labels file if needed
-    );
+    try {
+      String? res = await Tflite.loadModel(
+        model: "assets/mlmodel/model.tflite",
+        labels: "assets/mlmodel/labels.txt",
+      );
+      print("Model loaded: $res");
+    } catch (e) {
+      print("Failed to load model: $e");
+    }
   }
 
+  /// 推論を実行する
   static Future<List<dynamic>?> runModel(List<double> input) async {
-    Uint8List bytes = Uint8List.fromList(input.map((e) => e.toInt()).toList());
-    return await Tflite.runModelOnBinary(
-      binary: bytes, // Add the required binary parameter
-      numResults: 1, // Number of results you want
-      threshold: 0.5, // Confidence threshold
+    var output = await Tflite.runModelOnBinary(
+      binary: inputToByteList(input),
+      numResults: 1, // 取得する推論結果の数
+      threshold: 0.05, // 確信度のしきい値
     );
+
+    print("Model output: $output");
+    return output;
+  }
+
+  /// 浮動小数点数のリストをバイトリストに変換する
+  static Uint8List inputToByteList(List<double> input) {
+    var buffer = ByteData(4 * input.length);
+    for (int i = 0; i < input.length; i++) {
+      buffer.setFloat32(4 * i, input[i], Endian.little);
+    }
+    return buffer.buffer.asUint8List();
   }
 }

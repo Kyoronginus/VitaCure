@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../../widgets/health_data_card.dart';
 import 'package:provider/provider.dart';
 import 'kondisi_controller.dart';
 import '../../../widgets/bottom_nav_bar.dart';
 import '../../../widgets/custom_app_bar.dart';
+import '../../../widgets/health_data_card.dart';
 import '../../../widgets/text_styles.dart';
 import '../../../services/model_service.dart';
+import '../../../services/chatbot_service.dart';
 
 class KondisiScreen extends StatelessWidget {
-  const KondisiScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -25,8 +24,32 @@ class KondisiScreen extends StatelessWidget {
   }
 }
 
-class KondisiBody extends StatelessWidget {
-  const KondisiBody({super.key});
+class KondisiBody extends StatefulWidget {
+  @override
+  _KondisiBodyState createState() => _KondisiBodyState();
+}
+
+class _KondisiBodyState extends State<KondisiBody> {
+  final TextEditingController _chatController = TextEditingController();
+  String _chatResponse = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeModel();
+  }
+
+  Future<void> _initializeModel() async {
+    await ModelService.downloadModel();
+  }
+
+  Future<void> _sendMessage() async {
+    final response =
+        await ChatbotService.getChatbotResponse(_chatController.text);
+    setState(() {
+      _chatResponse = response;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +152,6 @@ class KondisiBody extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () async {
-                await ModelService.downloadModel();
                 List<double> input = [
                   double.parse(controller.healthData['Heart Rate'] ?? "0"),
                   double.parse(
@@ -148,6 +170,24 @@ class KondisiBody extends StatelessWidget {
               },
               child: Text('Check Health Status'),
             ),
+          ),
+          SizedBox(height: 20),
+          TextField(
+            controller: _chatController,
+            decoration: InputDecoration(
+              labelText: 'Ask the chatbot',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: _sendMessage,
+            child: Text('Send'),
+          ),
+          SizedBox(height: 20),
+          Text(
+            _chatResponse,
+            style: TextStyle(fontSize: 16),
           ),
         ],
       ),
