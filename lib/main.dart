@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'routes/app_routes.dart';
-import 'utils/utils_functions.dart';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'firebase_options.dart' as firebase_options;
 

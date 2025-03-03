@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'firebase_service.dart';
 
 class KondisiRepository {
   String userName = "Guest";
@@ -12,14 +11,22 @@ class KondisiRepository {
     if (user != null) {
       userName = user.displayName ?? "User";
       isLoggedIn = true;
-      healthData = await FirebaseService.getUserHealthData(user.uid);
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('health_data')
+          .doc(user.uid)
+          .get();
+      if (snapshot.exists) {
+        healthData = snapshot.data() as Map<String, dynamic>;
+      }
     }
   }
 
   Future<void> editHealthData(String key, String title) async {
     if (isLoggedIn) {
-      await FirebaseService.updateUserHealthData(
-          FirebaseAuth.instance.currentUser!.uid, healthData);
+      await FirebaseFirestore.instance
+          .collection('health_data')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .set(healthData);
     }
   }
 

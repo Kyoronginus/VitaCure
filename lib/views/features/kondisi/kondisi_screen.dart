@@ -5,6 +5,8 @@ import '../../../widgets/bottom_nav_bar.dart';
 import '../../../widgets/custom_app_bar.dart';
 import '../../../widgets/health_data_card.dart';
 import '../../../widgets/text_styles.dart';
+import '../../../services/model_service.dart';
+import '../../../services/chatbot_service.dart';
 
 class KondisiScreen extends StatelessWidget {
   @override
@@ -22,7 +24,33 @@ class KondisiScreen extends StatelessWidget {
   }
 }
 
-class KondisiBody extends StatelessWidget {
+class KondisiBody extends StatefulWidget {
+  @override
+  _KondisiBodyState createState() => _KondisiBodyState();
+}
+
+class _KondisiBodyState extends State<KondisiBody> {
+  final TextEditingController _chatController = TextEditingController();
+  String _chatResponse = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeModel();
+  }
+
+  Future<void> _initializeModel() async {
+    await ModelService.downloadModel();
+  }
+
+  Future<void> _sendMessage() async {
+    final response =
+        await ChatbotService.getChatbotResponse(_chatController.text);
+    setState(() {
+      _chatResponse = response;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<KondisiController>(context);
@@ -123,14 +151,43 @@ class KondisiBody extends StatelessWidget {
           SizedBox(height: 20),
           Center(
             child: ElevatedButton(
-              onPressed: () {
-                // Remove Firebase model-related code
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Health Status Check is disabled')),
-                );
+              onPressed: () async {
+                List<double> input = [
+                  double.parse(controller.healthData['Heart Rate'] ?? "0"),
+                  double.parse(
+                      controller.healthData['Systolic Blood Pressure'] ?? "0"),
+                  double.parse(
+                      controller.healthData['Diastolic Blood Pressure'] ?? "0"),
+                  double.parse(controller.calculateBMI().toStringAsFixed(1)),
+                  double.parse(controller.healthData['Glucose'] ?? "0"),
+                ];
+                List<dynamic>? result = await ModelService.runModel(input);
+                if (result != null && result.isNotEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Health Status: ${result[0]}')),
+                  );
+                }
               },
               child: Text('Check Health Status'),
             ),
+          ),
+          SizedBox(height: 20),
+          TextField(
+            controller: _chatController,
+            decoration: InputDecoration(
+              labelText: 'Ask the chatbot',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: _sendMessage,
+            child: Text('Send'),
+          ),
+          SizedBox(height: 20),
+          Text(
+            _chatResponse,
+            style: TextStyle(fontSize: 16),
           ),
         ],
       ),

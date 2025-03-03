@@ -6,11 +6,11 @@ class RekomendasiButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const RekomendasiButton({
-    Key? key,
+    super.key,
     required this.image,
     required this.label,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

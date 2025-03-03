@@ -8,6 +8,8 @@ import 'login_button.dart';
 import '../../../widgets/custom_text_form_field.dart';
 
 class ProfilScreen extends StatefulWidget {
+  const ProfilScreen({super.key});
+
   @override
   _ProfilScreenState createState() => _ProfilScreenState();
 }

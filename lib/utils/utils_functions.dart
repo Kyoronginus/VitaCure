@@ -8,7 +8,7 @@ Color panaceaTeal20 = Color.fromARGB(255, 158, 239, 240);
 MaterialColor createMaterialColor(String hexColor) {
   // Add alpha value if not provided
   if (hexColor.length == 6) {
-    hexColor = 'FF' + hexColor;
+    hexColor = 'FF$hexColor';
   }
 
   // Convert the hex color to an integer
@@ -22,7 +22,7 @@ MaterialColor createMaterialColor(String hexColor) {
   for (int i = 1; i < 10; i++) {
     strengths.add(0.1 * i);
   }
-  strengths.forEach((strength) {
+  for (var strength in strengths) {
     final double ds = 0.5 - strength;
     swatch[(strength * 1000).round()] = Color.fromRGBO(
       r + ((ds < 0 ? r : (255 - r)) * ds).round(),
@@ -30,6 +30,6 @@ MaterialColor createMaterialColor(String hexColor) {
       b + ((ds < 0 ? b : (255 - b)) * ds).round(),
       1,
     );
-  });
+  }
   return MaterialColor(color.value, swatch);
 }

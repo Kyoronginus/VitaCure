@@ -3,6 +3,8 @@ import '../../../widgets/bottom_nav_bar.dart';
 import '../../../widgets/custom_app_bar.dart';
 
 class PesanScreen extends StatelessWidget {
+  const PesanScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

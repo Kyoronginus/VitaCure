@@ -10,6 +10,8 @@ import '../../../widgets/text_styles.dart';
 import '../../../routes/app_routes.dart';
 
 class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
+
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -188,32 +190,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   }
                   if (value != _passwordController.text) {
                     return 'Password tidak cocok';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20),
-              RobotoText('Weight', fontSize: 18),
-              SizedBox(height: 5),
-              CustomTextFormField(
-                controller: _weightController,
-                labelText: 'Weight',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Weight diperlukan';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20),
-              RobotoText('Height', fontSize: 18),
-              SizedBox(height: 5),
-              CustomTextFormField(
-                controller: _heightController,
-                labelText: 'Height',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Height diperlukan';
                   }
                   return null;
                 },

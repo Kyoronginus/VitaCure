@@ -6,7 +6,8 @@ class LayananKamiButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
 
-  LayananKamiButton({
+  const LayananKamiButton({
+    super.key,
     required this.image,
     required this.label,
     required this.onPressed,

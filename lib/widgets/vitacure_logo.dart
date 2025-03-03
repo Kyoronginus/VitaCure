@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class VitacureLogo extends StatelessWidget {
+  const VitacureLogo({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(

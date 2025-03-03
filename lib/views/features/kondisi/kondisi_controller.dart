@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_service.dart';
 
 class KondisiController extends ChangeNotifier {
@@ -16,6 +17,13 @@ class KondisiController extends ChangeNotifier {
     if (user != null) {
       userName = user.displayName ?? "User";
       isLoggedIn = true;
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('health_data')
+          .doc(user.uid)
+          .get();
+      if (snapshot.exists) {
+        healthData = snapshot.data() as Map<String, dynamic>;
+      }
       healthData = await FirebaseService.getUserHealthData(user.uid);
       notifyListeners();
     }
@@ -39,6 +47,10 @@ class KondisiController extends ChangeNotifier {
                 Navigator.of(context).pop();
                 healthData[key] = controller.text;
                 if (isLoggedIn) {
+                  await FirebaseFirestore.instance
+                      .collection('health_data')
+                      .doc(FirebaseAuth.instance.currentUser!.uid)
+                      .set(healthData);
                   await FirebaseService.updateUserHealthData(
                       FirebaseAuth.instance.currentUser!.uid, healthData);
                 }

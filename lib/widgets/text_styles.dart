@@ -6,8 +6,7 @@ class RobotoText extends StatelessWidget {
   final Color color;
 
   const RobotoText(this.text,
-      {Key? key, this.fontSize = 20, this.color = Colors.black})
-      : super(key: key);
+      {super.key, this.fontSize = 20, this.color = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +26,8 @@ class RobotoText extends StatelessWidget {
 
 // Figma Flutter Generator VitacureWidget - TEXT
 class VitacureWidget extends StatelessWidget {
+  const VitacureWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Text(
