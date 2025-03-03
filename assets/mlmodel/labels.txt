@@ -1,0 +1,6 @@
+Glucose
+Systolic Blood Pressure
+Diastolic Blood Pressure
+BMI
+Heart Rate
+Disease
