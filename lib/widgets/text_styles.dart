@@ -6,12 +6,7 @@ class RobotoText extends StatelessWidget {
   final Color color;
 
   const RobotoText(this.text,
-<<<<<<< HEAD
       {super.key, this.fontSize = 20, this.color = Colors.black});
-=======
-      {Key? key, this.fontSize = 20, this.color = Colors.black})
-      : super(key: key);
->>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162
 
   @override
   Widget build(BuildContext context) {

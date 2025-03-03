@@ -9,21 +9,13 @@ class HealthDataCard extends StatelessWidget {
   final VoidCallback onEdit;
 
   const HealthDataCard({
-<<<<<<< HEAD
     super.key,
-=======
-    Key? key,
->>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162
     required this.title,
     required this.value,
     required this.color,
     required this.unit,
     required this.onEdit,
-<<<<<<< HEAD
   });
-=======
-  }) : super(key: key);
->>>>>>> b24713d121cf3f74bb62c8e729c95b3e7f578162
 
   @override
   Widget build(BuildContext context) {
