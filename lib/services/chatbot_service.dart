@@ -1,13 +1,19 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ChatbotService {
   static Future<String> getChatbotResponse(String message) async {
+    await dotenv.load(); // .env の読み込み
+
     final url = Uri.parse(
         "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill");
 
-    const apiKey =
-        "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"; // ← ここに取得したAPIキーを入れる
+    final apiKey = dotenv.env['HUGGINGFACE_API_KEY'] ?? "";
+
+    if (apiKey.isEmpty) {
+      return "Error: Missing API key";
+    }
 
     final response = await http.post(
       url,
@@ -20,10 +26,7 @@ class ChatbotService {
 
     if (response.statusCode == 200) {
       try {
-        // レスポンスのJSONをデコード
         List<dynamic> jsonResponse = jsonDecode(response.body);
-
-        // リストの最初の要素の "generated_text" を取得
         return jsonResponse.isNotEmpty
             ? jsonResponse[0]["generated_text"]
             : "No response";

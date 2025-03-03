@@ -43,6 +43,7 @@ dependencies:
   firebase_ml_model_downloader: 0.3.3+2
   tflite: ^1.1.2
   http: ^0.13.3
+  flutter_dotenv: ^5.2.1
 
 
 dev_dependencies:
@@ -72,6 +73,7 @@ flutter:
     - assets/images/
     - assets/images/Prev1.png
     - assets/mlmodel/
+    - .env
   
 
   # An image asset can refer to one or more reuttesolution-specific "variants", see
