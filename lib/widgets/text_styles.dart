@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class RobotoText extends StatelessWidget {
   final String text;
   final double fontSize;
+  final Color color;
 
-  const RobotoText(this.text, {Key? key, this.fontSize = 20}) : super(key: key);
+  const RobotoText(this.text,
+      {super.key, this.fontSize = 20, this.color = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class RobotoText extends StatelessWidget {
       text,
       textAlign: TextAlign.left,
       style: TextStyle(
-        color: Color.fromRGBO(0, 0, 0, 1),
+        color: color,
         fontFamily: 'Roboto',
         fontSize: fontSize,
         fontWeight: FontWeight.bold,
@@ -24,6 +26,8 @@ class RobotoText extends StatelessWidget {
 
 // Figma Flutter Generator VitacureWidget - TEXT
 class VitacureWidget extends StatelessWidget {
+  const VitacureWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Text(

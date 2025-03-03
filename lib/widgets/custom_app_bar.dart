@@ -10,13 +10,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color statusBarColor;
 
   const CustomAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.showBackButton = true,
     this.onProfileIconPressed,
     this.actions,
     this.statusBarColor = Colors.cyan,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

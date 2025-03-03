@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'rekomendasi_button.dart';
 
 class Rekomendasi extends StatelessWidget {
+  const Rekomendasi({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

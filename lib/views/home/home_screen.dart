@@ -10,6 +10,8 @@ import '../../widgets/search_bar.dart' as custom;
 import 'rekomendasi.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }

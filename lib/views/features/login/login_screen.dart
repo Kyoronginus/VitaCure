@@ -10,6 +10,8 @@ import '../../../widgets/custom_text_form_field.dart';
 import '../../../widgets/text_styles.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
