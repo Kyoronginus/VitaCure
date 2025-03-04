@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_service.dart';
+import 'kondisi_status_calculator.dart';
 
 class KondisiController extends ChangeNotifier {
   String userName = "Guest";
   bool isLoggedIn = false;
   Map<String, dynamic> healthData = {};
+  Map<String, dynamic> healthStatus = {};
 
   KondisiController() {
     _loadUserData();
@@ -25,8 +27,16 @@ class KondisiController extends ChangeNotifier {
         healthData = snapshot.data() as Map<String, dynamic>;
       }
       healthData = await FirebaseService.getUserHealthData(user.uid);
+      _calculateHealthStatus();
       notifyListeners();
     }
+  }
+
+  void _calculateHealthStatus() {
+    healthStatus = KondisiStatusCalculator.calculateHealthStatus(
+      healthData.map((key, value) =>
+          MapEntry(key, double.tryParse(value.toString()) ?? 0)),
+    );
   }
 
   void editHealthData(BuildContext context, String key, String title) {
@@ -54,6 +64,7 @@ class KondisiController extends ChangeNotifier {
                   await FirebaseService.updateUserHealthData(
                       FirebaseAuth.instance.currentUser!.uid, healthData);
                 }
+                _calculateHealthStatus();
                 notifyListeners();
               },
               child: Text('Simpan'),
@@ -73,5 +84,19 @@ class KondisiController extends ChangeNotifier {
       return weight / ((height / 100) * (height / 100));
     }
     return 0;
+  }
+
+  Color _getBMIColor(double bmi) {
+    if (bmi < 18.5) {
+      return Colors.lightBlue;
+    } else if (bmi >= 18.5 && bmi <= 22.9) {
+      return Colors.green;
+    } else if (bmi >= 23 && bmi <= 24.9) {
+      return Colors.yellow;
+    } else if (bmi >= 25 && bmi <= 29.9) {
+      return Colors.orange;
+    } else {
+      return Colors.red;
+    }
   }
 }

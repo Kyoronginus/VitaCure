@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ChatbotService {
   static Future<String> getChatbotResponse(String message) async {
-    await dotenv.load(); // .env の読み込み
+    await dotenv.load();
 
     final url = Uri.parse(
         "https://api-inference.huggingface.co/models/facebook/blenderbot-400M-distill");
