@@ -16,8 +16,7 @@ class HealthStatusDisplay extends StatelessWidget {
         ),
         ...healthStatus.entries.map((entry) {
           return ListTile(
-            title:
-                Text('${entry.key}: ${(entry.value['value'] as num).toInt()}'),
+            title: Text('${entry.key}: ${entry.value['value']}'),
             subtitle: LinearProgressIndicator(
               value: entry.value['percentage'] / 100,
               color: entry.value['color'],

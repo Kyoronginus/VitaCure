@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ureekaphase2_kesehatan/widgets/text_styles.dart';
 
 class KondisiStatusCalculator {
   static const Map<String, List<double>> thresholds = {
@@ -51,7 +52,8 @@ class KondisiStatusCalculator {
     });
 
     double overallHealth = (totalScore / count) * 100;
-    statusResults['Overall Health'] = {
+    statusResults['Overall Health Score'] = {
+      'value': overallHealth,
       'percentage': overallHealth,
       'color': getColor(overallHealth >= 80
           ? "Normal"

@@ -85,18 +85,4 @@ class KondisiController extends ChangeNotifier {
     }
     return 0;
   }
-
-  Color _getBMIColor(double bmi) {
-    if (bmi < 18.5) {
-      return Colors.lightBlue;
-    } else if (bmi >= 18.5 && bmi <= 22.9) {
-      return Colors.green;
-    } else if (bmi >= 23 && bmi <= 24.9) {
-      return Colors.yellow;
-    } else if (bmi >= 25 && bmi <= 29.9) {
-      return Colors.orange;
-    } else {
-      return Colors.red;
-    }
-  }
 }
