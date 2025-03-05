@@ -15,7 +15,7 @@ def flutterVersionName = project.hasProperty('flutterVersionName') ? project.flu
 defaultConfig {
     applicationId "com.example.flutter_ureekaphase2_kesehatan"
     minSdkVersion 23
-    targetSdkVersion 30
+    targetSdkVersion 31
     versionCode flutterVersionCode
     versionName flutterVersionName
 }
@@ -34,11 +34,13 @@ defaultConfig {
         noCompress 'lite'
     }
 
-    buildTypes {
-        release {
-            signingConfig = signingConfigs.debug
-        }
+buildTypes {
+    release {
+        minifyEnabled false // Disable R8
+        shrinkResources false
+
     }
+}
 }
 
 flutter {

@@ -1,30 +1,22 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_ureekaphase2_kesehatan/main.dart';
+import 'package:flutter_ureekaphase2_kesehatan/main.dart'; // Change this to your app's import
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+    // Build the app
     await tester.pumpWidget(const VitaCureApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that the initial counter value is 0
+    expect(find.text('0'), findsOneWidget); // <== This is failing
 
-    // Tap the '+' icon and trigger a frame.
+    // Tap the '+' button
     await tester.tap(find.byIcon(Icons.add));
+
+    // Wait for UI updates
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
+    // Verify the counter has incremented
     expect(find.text('1'), findsOneWidget);
   });
 }

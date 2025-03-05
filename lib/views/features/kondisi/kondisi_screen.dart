@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ureekaphase2_kesehatan/views/features/login/login_button.dart';
 import 'package:provider/provider.dart';
 import 'kondisi_controller.dart';
 import '../../../widgets/bottom_nav_bar.dart';
@@ -8,8 +7,6 @@ import '../../../widgets/health_data_card.dart';
 import '../../../widgets/text_styles.dart';
 import '../../../services/model_service.dart';
 import '../../../services/chatbot_service.dart';
-import 'health_status_display.dart';
-import '../../../utils/bmi_utils_functions.dart'; // Import the BMI utils
 
 class KondisiScreen extends StatelessWidget {
   @override
@@ -34,7 +31,7 @@ class KondisiBody extends StatefulWidget {
 
 class _KondisiBodyState extends State<KondisiBody> {
   final TextEditingController _chatController = TextEditingController();
-  List<Map<String, String>> _chatHistory = [];
+  String _chatResponse = '';
 
   @override
   void initState() {
@@ -47,27 +44,16 @@ class _KondisiBodyState extends State<KondisiBody> {
   }
 
   Future<void> _sendMessage() async {
-    final userMessage = _chatController.text;
+    final response =
+        await ChatbotService.getChatbotResponse(_chatController.text);
     setState(() {
-      _chatHistory.add({'sender': 'user', 'message': userMessage});
-      _chatController.clear();
-    });
-
-    final response = await ChatbotService.getChatbotResponse(userMessage);
-    setState(() {
-      _chatHistory.add({'sender': 'bot', 'message': response});
+      _chatResponse = response;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<KondisiController>(context);
-    double height =
-        double.tryParse(controller.healthData['tinggi']?.toString() ?? "0") ??
-            0;
-    double weight =
-        double.tryParse(controller.healthData['berat']?.toString() ?? "0") ?? 0;
-    double bmi = calculateBMI(height, weight); // Use the calculateBMI function
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -151,77 +137,58 @@ class _KondisiBodyState extends State<KondisiBody> {
           Container(
             padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             decoration: BoxDecoration(
-              color: getBMIColor(bmi), // Use the getBMIColor function
+              color: Colors.grey[200],
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Center(
-              child: Column(
-                children: [
-                  RobotoText('BMI', fontSize: 10, color: Colors.black),
-                  RobotoText(
-                    bmi.toStringAsFixed(1),
-                    fontSize: 38,
-                    color: Colors.black,
-                  ),
-                  SizedBox(height: 10),
-                  RobotoText(
-                    bmi < 18.5
-                        ? 'Kurus'
-                        : bmi >= 18.5 && bmi <= 22.9
-                            ? 'Normal'
-                            : bmi >= 23 && bmi <= 24.9
-                                ? 'Agak Gemuk'
-                                : bmi >= 25 && bmi <= 29.9
-                                    ? 'Gemuk'
-                                    : 'Obese',
-                    fontSize: 10,
-                    color: Colors.black,
-                  ),
-                ],
+              child: RobotoText(
+                'BMI: ${controller.calculateBMI().toStringAsFixed(1)}',
+                fontSize: 18,
+                color: Colors.black,
               ),
             ),
           ),
           SizedBox(height: 20),
-          ExpansionTile(title: RobotoText('Kondisi Kesehatan Kamu'), children: [
-            HealthStatusDisplay(healthStatus: controller.healthStatus),
-          ]),
-          SizedBox(height: 20),
-          ExpansionTile(title: RobotoText('Ceritakan Ke Chatbot'), children: [
-            Container(
-              height: 200,
-              child: ListView.builder(
-                itemCount: _chatHistory.length,
-                itemBuilder: (context, index) {
-                  final chat = _chatHistory[index];
-                  return Align(
-                    alignment: chat['sender'] == 'user'
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
-                    child: Container(
-                      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: chat['sender'] == 'user'
-                            ? Colors.blue[100]
-                            : Colors.grey[300],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(chat['message'] ?? ''),
-                    ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () async {
+                List<double> input = [
+                  double.parse(controller.healthData['Heart Rate'] ?? "0"),
+                  double.parse(
+                      controller.healthData['Systolic Blood Pressure'] ?? "0"),
+                  double.parse(
+                      controller.healthData['Diastolic Blood Pressure'] ?? "0"),
+                  double.parse(controller.calculateBMI().toStringAsFixed(1)),
+                  double.parse(controller.healthData['Glucose'] ?? "0"),
+                ];
+                List<dynamic>? result = await ModelService.runModel(input);
+                if (result != null && result.isNotEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Health Status: ${result[0]}')),
                   );
-                },
-              ),
+                }
+              },
+              child: Text('Check Health Status'),
             ),
-            TextField(
-              controller: _chatController,
-              decoration: InputDecoration(
-                labelText: 'Tanya ke Chatbot',
-                border: OutlineInputBorder(),
-              ),
+          ),
+          SizedBox(height: 20),
+          TextField(
+            controller: _chatController,
+            decoration: InputDecoration(
+              labelText: 'Ask the chatbot',
+              border: OutlineInputBorder(),
             ),
-            SizedBox(height: 10),
-            LoginButton(text: 'Kirim', onPressed: _sendMessage)
-          ]),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: _sendMessage,
+            child: Text('Send'),
+          ),
+          SizedBox(height: 20),
+          Text(
+            _chatResponse,
+            style: TextStyle(fontSize: 16),
+          ),
         ],
       ),
     );

@@ -31,37 +31,72 @@ class BottomNavBar extends StatelessWidget {
       default:
         route = AppRoutes.home;
     }
-    Navigator.pushNamed(context, route);
+    Navigator.pushReplacementNamed(context, route);
   }
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
+      items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.notifications),
+          icon: Image.asset(
+            currentIndex == 0
+                ? 'assets/images/appbar_icons/pesan.png'
+                : 'assets/images/appbar_icons/pesan_hitam.png',
+            width: 22,
+            height: 22,
+          ),
           label: 'Pesan',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.favorite),
+          icon: Image.asset(
+            currentIndex == 1
+                ? 'assets/images/appbar_icons/kondisi.png'
+                : 'assets/images/appbar_icons/kondisi_hitam.png',
+            width: 22,
+            height: 22,
+          ),
           label: 'Kondisi',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Image.asset(
+            currentIndex == 2
+                ? 'assets/images/appbar_icons/beranda.png'
+                : 'assets/images/appbar_icons/beranda_hitam.png',
+            width: 22,
+            height: 22,
+          ),
           label: 'Beranda',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.history),
+          icon: Image.asset(
+            currentIndex == 3
+                ? 'assets/images/appbar_icons/riwayat.png'
+                : 'assets/images/appbar_icons/riwayat_hitam.png',
+            width: 22,
+            height: 22,
+          ),
           label: 'Riwayat',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
+          icon: Image.asset(
+            currentIndex == 4
+                ? 'assets/images/appbar_icons/pengaturan.png'
+                : 'assets/images/appbar_icons/pengaturan_hitam.png',
+            width: 22,
+            height: 22,
+          ),
           label: 'Pengaturan',
         ),
       ],
       currentIndex: currentIndex,
       selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black,
       backgroundColor: panaceaTeal20,
+      type: BottomNavigationBarType
+          .fixed, // Ensures all labels are always visible
+      selectedLabelStyle: const TextStyle(fontSize: 12), // Selected font size
+      unselectedLabelStyle: const TextStyle(fontSize: 12),
       onTap: (index) => _onItemTapped(context, index),
     );
   }

@@ -4,15 +4,21 @@ class RobotoText extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color color;
+  final TextAlign textAlign;
 
-  const RobotoText(this.text,
-      {super.key, this.fontSize = 20, this.color = Colors.black});
+  const RobotoText(
+    this.text, {
+    super.key,
+    this.fontSize = 20,
+    this.color = Colors.black,
+    this.textAlign = TextAlign.left,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: TextAlign.left,
+      textAlign: textAlign,
       style: TextStyle(
         color: color,
         fontFamily: 'Roboto',
