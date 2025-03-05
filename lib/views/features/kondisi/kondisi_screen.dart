@@ -6,7 +6,6 @@ import '../../../widgets/custom_app_bar.dart';
 import '../../../widgets/health_data_card.dart';
 import '../../../widgets/text_styles.dart';
 import '../../../services/model_service.dart';
-import '../../../services/chatbot_service.dart';
 
 class KondisiScreen extends StatelessWidget {
   @override
@@ -30,9 +29,6 @@ class KondisiBody extends StatefulWidget {
 }
 
 class _KondisiBodyState extends State<KondisiBody> {
-  final TextEditingController _chatController = TextEditingController();
-  String _chatResponse = '';
-
   @override
   void initState() {
     super.initState();
@@ -41,14 +37,6 @@ class _KondisiBodyState extends State<KondisiBody> {
 
   Future<void> _initializeModel() async {
     await ModelService.downloadModel();
-  }
-
-  Future<void> _sendMessage() async {
-    final response =
-        await ChatbotService.getChatbotResponse(_chatController.text);
-    setState(() {
-      _chatResponse = response;
-    });
   }
 
   @override
@@ -153,7 +141,7 @@ class _KondisiBodyState extends State<KondisiBody> {
             child: ElevatedButton(
               onPressed: () async {
                 List<double> input = [
-                  double.parse(controller.healthData['Heart Rate'] ?? "0"),
+                  double.parse(controller.healthData['HeartRate'] ?? "0"),
                   double.parse(
                       controller.healthData['Systolic Blood Pressure'] ?? "0"),
                   double.parse(
@@ -170,24 +158,6 @@ class _KondisiBodyState extends State<KondisiBody> {
               },
               child: Text('Check Health Status'),
             ),
-          ),
-          SizedBox(height: 20),
-          TextField(
-            controller: _chatController,
-            decoration: InputDecoration(
-              labelText: 'Ask the chatbot',
-              border: OutlineInputBorder(),
-            ),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: _sendMessage,
-            child: Text('Send'),
-          ),
-          SizedBox(height: 20),
-          Text(
-            _chatResponse,
-            style: TextStyle(fontSize: 16),
           ),
         ],
       ),
