@@ -14,6 +14,7 @@ class LayananKami extends StatelessWidget {
           image: Image.asset('assets/images/Chat1.png'),
           label: 'Konsultasi',
           onPressed: () {
+            Navigator.pushNamed(context, '/konsultasi');
             // Navigate to Konsultasi screen
           },
         ),
