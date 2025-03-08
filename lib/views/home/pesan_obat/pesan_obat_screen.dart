@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import '../../../widgets/bottom_nav_bar.dart';
 import '../../../widgets/custom_app_bar.dart';
 
-class KonsultasiScreen extends StatelessWidget {
-  const KonsultasiScreen({super.key});
+class PesanObatScreen extends StatelessWidget {
+  const PesanObatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: Text('Konsultasi'),
+        title: Text('Pesan Obat'),
       ),
       body: Center(
-        child: Text('Konsultasi Screen'),
+        child: Text('No medicine available'),
       ),
       bottomNavigationBar: BottomNavBar(
-        currentIndex: 2, // Konsultasi is selected
+        currentIndex: 2, // Pesan Obat is selected
       ),
     );
   }

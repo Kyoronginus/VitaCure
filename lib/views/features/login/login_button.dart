@@ -16,11 +16,9 @@ class LoginButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
         shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(10.0), // Slightly circular corners
+          borderRadius: BorderRadius.circular(10.0),
         ),
-        side: BorderSide(
-            color: Colors.cyan, width: 2.0), // Outline color and width
+        side: BorderSide(color: Colors.cyan, width: 2.0),
       ),
       onPressed: onPressed,
       child: Text(
@@ -29,7 +27,7 @@ class LoginButton extends StatelessWidget {
           fontFamily: 'Roboto',
           fontWeight: FontWeight.bold,
           fontSize: 16,
-          color: Colors.cyan, // Text color
+          color: Colors.cyan,
         ),
       ),
     );

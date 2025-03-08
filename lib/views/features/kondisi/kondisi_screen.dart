@@ -9,7 +9,7 @@ import '../../../widgets/text_styles.dart';
 import '../../../services/model_service.dart';
 import '../../../services/chatbot_service.dart';
 import 'health_status_display.dart';
-import '../../../utils/bmi_utils_functions.dart'; // Import the BMI utils
+import '../../../utils/bmi_utils_functions.dart';
 
 class KondisiScreen extends StatelessWidget {
   @override
@@ -67,7 +67,7 @@ class _KondisiBodyState extends State<KondisiBody> {
             0;
     double weight =
         double.tryParse(controller.healthData['berat']?.toString() ?? "0") ?? 0;
-    double bmi = calculateBMI(height, weight); // Use the calculateBMI function
+    double bmi = calculateBMI(height, weight);
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -183,7 +183,21 @@ class _KondisiBodyState extends State<KondisiBody> {
           ),
           SizedBox(height: 20),
           ExpansionTile(title: RobotoText('Kondisi Kesehatan Kamu'), children: [
-            HealthStatusDisplay(healthStatus: controller.healthStatus),
+            if (controller.isLoggedIn)
+              HealthStatusDisplay(healthStatus: controller.healthStatus)
+            else
+              RobotoText(
+                "Saat ini kamu belum login, silahkan login untuk gunakan fitur",
+                fontSize: 11,
+              ),
+            SizedBox(height: 20),
+            LoginButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/profil');
+              },
+              text: 'Login',
+            ),
+            SizedBox(height: 20)
           ]),
           SizedBox(height: 20),
           ExpansionTile(title: RobotoText('Ceritakan Ke Chatbot'), children: [
@@ -220,7 +234,8 @@ class _KondisiBodyState extends State<KondisiBody> {
               ),
             ),
             SizedBox(height: 10),
-            LoginButton(text: 'Kirim', onPressed: _sendMessage)
+            LoginButton(text: 'Kirim', onPressed: _sendMessage),
+            SizedBox(height: 10),
           ]),
         ],
       ),

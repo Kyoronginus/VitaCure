@@ -73,12 +73,11 @@ class _LoginScreenState extends State<LoginScreen> {
           key: _formKey,
           child: ListView(
             children: [
-              Center(child: VitacureLogo()), // Add the VitacureLogo widget
+              Center(child: VitacureLogo()),
               SizedBox(height: 20),
               Divider(
-                color: const Color.fromARGB(
-                    255, 0, 0, 0), // Set the color of the line
-                thickness: 3.0, // Set the thickness of the line
+                color: const Color.fromARGB(255, 0, 0, 0),
+                thickness: 3.0,
               ),
               SizedBox(height: 20),
               RobotoText('Alamat E-Mail', fontSize: 18),

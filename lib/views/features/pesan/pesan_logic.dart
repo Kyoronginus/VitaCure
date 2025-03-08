@@ -36,20 +36,8 @@ class PesanLogic extends ChangeNotifier {
           }
           return false;
         });
-
-        if (healthData.isEmpty || hasNonGreenData) {
-          showNotification = true;
-          notificationMessage = healthData.isEmpty
-              ? 'Please fill in your health data.'
-              : 'Some of your health data is not in the normal range.';
-          isDataEmpty = healthData.isEmpty;
-        }
-      } else {
-        showNotification = true;
-        notificationMessage = 'Please fill in your health data.';
-        isDataEmpty = true;
+        notifyListeners();
       }
-      notifyListeners();
     }
   }
 }

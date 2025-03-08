@@ -10,14 +10,13 @@ class PesanKondisiAman extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/images/smile.png', // Ensure this path is correct
-          height: 100, // Set the height
+          'assets/images/smile.png',
+          height: 100,
         ),
         SizedBox(height: 20),
         RobotoText(
           'Yay, kondisi tubuh kamu aman! ',
           fontSize: 16,
-          // textAlign: TextAlign.center,
         ),
       ],
     );
