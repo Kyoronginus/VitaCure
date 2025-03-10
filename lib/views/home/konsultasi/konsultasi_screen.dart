@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../widgets/bottom_nav_bar.dart';
 import '../../../widgets/custom_app_bar.dart';
-import 'package:flutter_ureekaphase2_kesehatan/views/home/konsultasi/profil_dokter_screen.dart';
 
 
 class KonsultasiScreen extends StatefulWidget {
@@ -55,9 +54,9 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
               controller: _tabController,
               children: [
                 _buildKonsultasiCard(),
-                Center(child: Text("Daftar Dokter Umum")),
-                Center(child: Text("Daftar Psikolog")),
-                Center(child: Text("Daftar Spesialis")),
+                _buildNoDoctorAvailableCard(),
+                _buildNoDoctorAvailableCard(),
+                _buildNoDoctorAvailableCard(),
               ],
             ),
           ),
@@ -76,7 +75,7 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: Colors.teal)),
         child: ListTile(
           leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/images/doctor_avatar.png'), // Ganti dengan asset yang sesuai
+            // backgroundImage: AssetImage(''), // Ganti dengan asset yang sesuai
             radius: 24,
           ),
           title: Text("Dokter Ambatron", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -93,16 +92,15 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
               Text("28/02/2025", style: TextStyle(fontSize: 12, color: Colors.white), textAlign: TextAlign.center),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => ProfilDokterScreen(
-                        nama: "Dokter Ambatron",
-                        peran: "Perannya Dokter Ambatron",
-                        jumlahKonsultasi: 20,
-                        tentang: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-                      ),
-                    ),
+                    '/profilDokter',
+                    arguments: {
+                      'nama': "Dokter Ambatron",
+                      'peran': "Dokter Spesialis",
+                      'tentang': "Dokter Ambatron adalah dokter terbaik di bidangnya dengan pengalaman lebih dari 10 tahun.",
+                      'jumlahKonsultasi': 20,
+                    },
                   );
                   // Aksi ketika tombol profil ditekan
                 },
@@ -114,6 +112,20 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNoDoctorAvailableCard() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: Colors.teal)),
+        child: ListTile(
+          leading: Icon(Icons.info, size: 40, color: Colors.teal),
+          title: Text("No doctor available", style: TextStyle(fontWeight: FontWeight.bold)),
+          subtitle: Text("Currently, there are no available doctors in this category."),
         ),
       ),
     );

@@ -4,7 +4,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ureekaphase2_kesehatan/views/home/konsultasi/konsultasi_screen.dart';
-import 'package:flutter_ureekaphase2_kesehatan/views/home/konsultasi/profil_dokter_screen.dart';
 import '../views/home/home_screen.dart';
 import '../views/features/kondisi/kondisi_screen.dart';
 import '../views/features/pesan/pesan_screen.dart';
@@ -26,9 +25,9 @@ class AppRoutes {
   static const String register = '/register';
   static const String splash = '/';
   static const String konsultasi = '/konsultasi';
-  static const String profilDokter = '/profil_dokter';
 
-  static Map<String, WidgetBuilder> get routes => {
+  static Map<String, WidgetBuilder> get routes =>
+      {
         home: (context) => HomeScreen(),
         pesan: (context) => PesanScreen(),
         kondisi: (context) => KondisiScreen(),
@@ -39,11 +38,6 @@ class AppRoutes {
         register: (context) => RegisterScreen(),
         splash: (context) => SplashScreen(),
         konsultasi: (context) => KonsultasiScreen(),
-        profilDokter: (context) => ProfilDokterScreen(
-          nama: "Dokter Ambatron",
-          peran: "Dokter Spesialis",
-          tentang: "Dokter Ambatron adalah dokter terbaik di bidangnya dengan pengalaman lebih dari 10 tahun.",
-          jumlahKonsultasi: 20,
-        ),
       };
 }
+
