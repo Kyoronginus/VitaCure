@@ -10,7 +10,7 @@ class PesanKosong extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/images/silang.png', // Ensure this path is correct
+          'assets/images/silang.png',
           height: 100, // Set the height
         ),
         SizedBox(height: 20),

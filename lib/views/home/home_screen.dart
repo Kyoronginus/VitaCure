@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: custom.SearchBar(), // Use the search bar widget as the title
+        title: custom.SearchBar(),
         statusBarColor: panaceaTeal20,
         showBackButton: false, // Do not show the back button
         actions: [
@@ -52,8 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: CircleAvatar(
               backgroundImage: user != null
                   ? AssetImage('assets/images/icon_loggedin.png')
-                  : AssetImage(
-                      'assets/images/Profileuser1.png'), // Replace with your logo asset
+                  : AssetImage('assets/images/Profileuser1.png'),
             ),
             onPressed: () {
               Navigator.pushNamed(context, '/profil');
@@ -75,25 +74,24 @@ class _HomeScreenState extends State<HomeScreen> {
               'Sehat itu mudah, mari mulai!',
               fontSize: 13,
             ),
-            SizedBox(height: 16.0), // Add some spacing
-            RobotoText('Layanan Kami'), // Use the custom text style widget
-            SizedBox(height: 16.0), // Add some spacing
+            SizedBox(height: 16.0),
+            RobotoText('Layanan Kami'),
+            SizedBox(height: 16.0),
             SizedBox(
-              height: 100, // Set a fixed height for the LayananKami widget
+              height: 100,
               child: LayananKami(),
             ),
-            SizedBox(height: 16.0), // Add some spacing
-            RobotoText("Rekomendasi"), // Display the Rekomendasi text
-            // Add more widgets below if needed
+            SizedBox(height: 16.0),
+            RobotoText("Rekomendasi"),
             SizedBox(
-              height: 260, // Set a fixed height for the LayananKami widget
+              height: 260,
               child: Rekomendasi(),
             ),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavBar(
-        currentIndex: 2, // Home is selected
+        currentIndex: 2,
       ),
     );
   }

@@ -9,11 +9,11 @@ class VitacureLogo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/images/Vitacure_logo.png', // Set the height
+          'assets/images/Vitacure_logo.png',
         ),
         SizedBox(height: 20),
         Image.asset(
-          'assets/images/Vitacure_fontpng.png', // Set the height
+          'assets/images/Vitacure_fontpng.png',
         ),
       ],
     );

@@ -30,7 +30,6 @@ class RobotoText extends StatelessWidget {
   }
 }
 
-// Figma Flutter Generator VitacureWidget - TEXT
 class VitacureWidget extends StatelessWidget {
   const VitacureWidget({super.key});
 

@@ -9,7 +9,8 @@ class KonsultasiScreen extends StatefulWidget {
   _KonsultasiScreenState createState() => _KonsultasiScreenState();
 }
 
-class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerProviderStateMixin {
+class _KonsultasiScreenState extends State<KonsultasiScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
   @override
@@ -28,7 +29,8 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: Text('Konsultasi', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        title: Text('Konsultasi',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         showBackButton: true,
       ),
       body: Column(
@@ -62,7 +64,7 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
         ],
       ),
       bottomNavigationBar: BottomNavBar(
-        currentIndex: 4, // Sesuai dengan bottom navbar
+        currentIndex: 4,
       ),
     );
   }
@@ -71,24 +73,31 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: Colors.teal)),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: BorderSide(color: Colors.teal)),
         child: ListTile(
           leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/images/doctor_avatar.png'), // Ganti dengan asset yang sesuai
+            backgroundImage: AssetImage('assets/images/doctor_avatar.png'),
             radius: 24,
           ),
-          title: Text("Dokter Ambatron", style: TextStyle(fontWeight: FontWeight.bold)),
+          title: Text("Dokter Ambatron",
+              style: TextStyle(fontWeight: FontWeight.bold)),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Perannya Dokter Ambatron"),
-              Text("Rp. 200.000,00", style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+              Text("Rp. 200.000,00",
+                  style: TextStyle(
+                      color: Colors.green, fontWeight: FontWeight.bold)),
             ],
           ),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("28/02/2025", style: TextStyle(fontSize: 12, color: Colors.white), textAlign: TextAlign.center),
+              Text("28/02/2025",
+                  style: TextStyle(fontSize: 12, color: Colors.white),
+                  textAlign: TextAlign.center),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(
@@ -97,7 +106,8 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
                     arguments: {
                       'nama': "Dokter Ambatron",
                       'peran': "Dokter Spesialis",
-                      'tentang': "Dokter Ambatron adalah dokter terbaik di bidangnya dengan pengalaman lebih dari 10 tahun.",
+                      'tentang':
+                          "Dokter Ambatron adalah dokter terbaik di bidangnya dengan pengalaman lebih dari 10 tahun.",
                       'jumlahKonsultasi': 20,
                     },
                   );
@@ -119,11 +129,15 @@ class _KonsultasiScreenState extends State<KonsultasiScreen> with SingleTickerPr
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0), side: BorderSide(color: Colors.teal)),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: BorderSide(color: Colors.teal)),
         child: ListTile(
           leading: Icon(Icons.info, size: 40, color: Colors.teal),
-          title: Text("No doctor available", style: TextStyle(fontWeight: FontWeight.bold)),
-          subtitle: Text("Currently, there are no available doctors in this category."),
+          title: Text("No doctor available",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          subtitle: Text(
+              "Currently, there are no available doctors in this category."),
         ),
       ),
     );

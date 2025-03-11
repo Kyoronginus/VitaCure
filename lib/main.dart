@@ -21,7 +21,7 @@ class VitaCureApp extends StatelessWidget {
     return MaterialApp(
       title: 'VitaCure',
       theme: ThemeData(
-        primarySwatch: Colors.cyan, // Example MaterialColor
+        primarySwatch: Colors.cyan,
         scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBarTheme: const AppBarTheme(
           backgroundColor:
