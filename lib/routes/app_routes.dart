@@ -16,6 +16,7 @@ import '../views/home/konsultasi/konsultasi_screen.dart';
 import '../views/home/komunitas/komunitas_screen.dart';
 import '../views/home/opini_lain/opini_lain_screen.dart';
 import '../views/home/pesan_obat/pesan_obat_screen.dart';
+import '../views/home/artikel.dart';
 
 class AppRoutes {
   static const String home = '/home';
@@ -30,6 +31,7 @@ class AppRoutes {
   static const String komunitas = '/komunitas';
   static const String opini_lain = '/opini_lain';
   static const String pesan_obat = '/pesan_obat';
+  static const String artikel = '/artikel';
 
   static const String splash = '/';
 
@@ -46,6 +48,7 @@ class AppRoutes {
         splash: (context) => SplashScreen(),
         komunitas: (context) => KomunitasScreen(),
         opini_lain: (context) => OpiniLainScreen(),
-        pesan_obat: (context) => PesanObatScreen()
+        pesan_obat: (context) => PesanObatScreen(),
+        artikel: (context) => ArtikelScreen(),
       };
 }

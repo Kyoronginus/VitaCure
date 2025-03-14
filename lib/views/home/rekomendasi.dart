@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'rekomendasi_button.dart';
+import '../../routes/app_routes.dart';
 
 class Rekomendasi extends StatelessWidget {
   const Rekomendasi({super.key});
@@ -18,6 +19,7 @@ class Rekomendasi extends StatelessWidget {
               image: Image.asset('assets/images/Hepatitis.png'),
               label: 'Artikel 1',
               onPressed: () {
+                Navigator.pushNamed(context, '/artikel');
                 // Navigate to Artikel 1 screen
               },
             ),
@@ -25,6 +27,7 @@ class Rekomendasi extends StatelessWidget {
               image: Image.asset('assets/images/Hepatitis.png'),
               label: 'Artikel 2',
               onPressed: () {
+                Navigator.pushNamed(context, '/artikel');
                 // Navigate to Artikel 2 screen
               },
             ),
@@ -32,6 +35,7 @@ class Rekomendasi extends StatelessWidget {
               image: Image.asset('assets/images/Hepatitis.png'),
               label: 'Artikel 3',
               onPressed: () {
+                Navigator.pushNamed(context, '/artikel');
                 // Navigate to Artikel 3 screen
               },
             ),
@@ -39,6 +43,7 @@ class Rekomendasi extends StatelessWidget {
               image: Image.asset('assets/images/Hepatitis.png'),
               label: 'Artikel 4',
               onPressed: () {
+                Navigator.pushNamed(context, '/artikel');
                 // Navigate to Artikel 4 screen
               },
             ),
