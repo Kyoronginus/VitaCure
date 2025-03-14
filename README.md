@@ -1,16 +1,25 @@
-# flutter_ureekaphase2_kesehatan
+# VitaCure
 
-A new Flutter project.
+## Overview
+Vitacure adalah aplikasi kesehatan yang dirancang untuk membantu pengguna dalam memantau kesehatan mereka secara lebih efisien. Aplikasi ini menyediakan fitur pemantauan kondisi kesehatan berbasis data pengguna serta penilaian dalam score, konsultasi dengan dokter, serta AI chatbot yang dapat diajak berbicara.
 
-## Getting Started
+## Fitur Utama
+- Register & Login : Membuat akun dan masuk ke akun.
+- Penilaian Skor Kesehatan : Memberikan pengguna skor kesehatan berdasarkan analisis data (Detak jantung, BMI, gula darah, tekanan darah sistol dan diastol).
+- AI Chatbot : Chatbot model blenderbot 400M distill.
+- Konsultasi : membuat jadwal konsultasi dengan dokter
 
-This project is a starting point for a Flutter application.
+## Tech Stack :
+Backend : 
+- Database : Firestore Database
+- Authentication : Firebase Authentication
+- Chatbot : Hugging Face API
 
-A few resources to get you started if this is your first Flutter project:
+Frontend : 
+- Framework : Flutter
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Implementasi : 
+1. Konfigurasi Firebase Firestore dan Authentication untuk database, dan register & login.
+2. Menyiapkan API Key di Hugging Face (https://huggingface.co/) untuk integrasi chatbot
+3. Pembuatan UI/UX dengan flutter
+4. Build dan deploy dengan command git : Build flutter apk
